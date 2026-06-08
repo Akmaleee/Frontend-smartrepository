@@ -27,7 +27,7 @@ function VerifyContent() {
     const verifyEmail = async () => {
       try {
         // Menembak endpoint backend: GET /auth/verify?token=...
-        const response = await api.get(`/verify?token=${token}`);
+        const response = await api.get(`/auth/verify?token=${token}`);
         setStatus("success");
         setMessage(response.data.message || "Email berhasil diverifikasi! Anda sekarang dapat login.");
       } catch (error: any) {
