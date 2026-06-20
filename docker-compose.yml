@@ -1,0 +1,19 @@
+services:
+  frontend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: nextjs_frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.production
+    networks:
+      - partnership-network
+
+# Karena jaringan 'partnership-network' sudah dibuat oleh backend,
+# kita beri tahu Docker bahwa jaringan ini adalah jaringan eksternal yang sudah ada.
+networks:
+  partnership-network:
+    external: true
