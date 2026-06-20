@@ -24,7 +24,7 @@ export default function AdminAnnouncementsPage() {
       const token = Cookies.get("access_token");
       
       // 1. Panggil URL absolut secara eksplisit beserta header token
-      const res = await api.get("http://127.0.0.1:8000/admin/announcements", {
+      const res = await api.get("/admin/announcements", {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -66,11 +66,11 @@ export default function AdminAnnouncementsPage() {
 
       if (modalMode === "add") {
         // Gunakan URL Absolut untuk POST
-        await api.post("http://127.0.0.1:8000/admin/announcements", payload, { headers });
+        await api.post("/admin/announcements", payload, { headers });
         alert("✅ Pengumuman ditambahkan!");
       } else {
         // Gunakan URL Absolut untuk PATCH
-        await api.patch(`http://127.0.0.1:8000/admin/announcements/${formData.id}`, payload, { headers });
+        await api.patch(`/admin/announcements/${formData.id}`, payload, { headers });
         alert("✅ Pengumuman diperbarui!");
       }
       
