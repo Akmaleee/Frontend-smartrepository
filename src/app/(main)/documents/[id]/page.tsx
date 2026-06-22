@@ -267,14 +267,11 @@ export default function DocumentDetailPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-2 border-y py-3">
+              {/* PERUBAHAN: Hanya menampilkan "Dilihat" di tengah */}
+              <div className="flex justify-center border-y py-3">
                 <div className="text-center">
                   <div className="text-xl font-bold text-gray-900">{doc.views_count}</div>
                   <div className="text-[10px] text-gray-500 uppercase font-semibold">Dilihat</div>
-                </div>
-                <div className="text-center border-l">
-                  <div className="text-xl font-bold text-gray-900">{doc.downloads_count}</div>
-                  <div className="text-[10px] text-gray-500 uppercase font-semibold">Diunduh</div>
                 </div>
               </div>
 
@@ -418,8 +415,6 @@ export default function DocumentDetailPage() {
 }
 
 
-
-
 // "use client";
 
 // import { useState, useEffect, useRef } from "react";
@@ -427,7 +422,7 @@ export default function DocumentDetailPage() {
 // import { 
 //   ArrowLeft, FileText, Download, Eye, Calendar, 
 //   User as UserIcon, BookOpen, CheckCircle2, Copy, AlertCircle, Loader2,
-//   MessageCircle, X, Send
+//   MessageCircle, X, Send, Bot
 // } from "lucide-react";
 // import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 // import { Button } from "@/components/ui/button";
@@ -496,9 +491,9 @@ export default function DocumentDetailPage() {
 //   const [isGuest, setIsGuest] = useState(true);
 
 //   useEffect(() => {
-//   const token = Cookies.get("access_token");
-//   setIsGuest(!token);
-// }, []);
+//     const token = Cookies.get("access_token");
+//     setIsGuest(!token);
+//   }, []);
 
 //   useEffect(() => {
 //     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -653,33 +648,22 @@ export default function DocumentDetailPage() {
 //             </div>
 //           </div>
 
-//           {/* --- ABSTRAK / RINGKASAN TERSTRUKTUR --- */}
+//           {/* --- ABSTRAK / RINGKASAN TERSTRUKTUR (HTML dari IndoT5 Lokal) --- */}
 //           <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm space-y-6">
-//             <h3 className="text-lg font-bold text-gray-900 border-b pb-3">Ringkasan</h3>
+//             <div className="flex justify-between items-center border-b pb-3">
+//               <h3 className="text-lg font-bold text-gray-900">Ringkasan Abstraktif</h3>
+//               <span className="flex items-center gap-1.5 bg-blue-50 text-blue-700 text-[10px] font-bold px-2.5 py-1 rounded-full border border-blue-100">
+//                 <Bot className="w-3 h-3" /> Model IndoT5
+//               </span>
+//             </div>
+            
 //             <div className="space-y-6">
-//               {doc.summary ? doc.summary.split('\n\n').map((paragraph, index) => {
-//                 // Mencari tanda titik dua (:) untuk memisahkan Sub-Judul dan Isi
-//                 const colonIndex = paragraph.indexOf(':');
-                
-//                 // Jika ada titik dua di awal kalimat (maksimal 40 karakter pertama)
-//                 if (colonIndex > 0 && colonIndex < 40) {
-//                   const title = paragraph.substring(0, colonIndex).trim();
-//                   const content = paragraph.substring(colonIndex + 1).trim();
-//                   return (
-//                     <div key={index} className="space-y-1.5">
-//                       <h4 className="font-bold text-blue-800 text-sm">{title}</h4>
-//                       <p className="text-gray-600 leading-relaxed text-justify text-sm">{content}</p>
-//                     </div>
-//                   );
-//                 }
-                
-//                 // Jika tidak ada format khusus, render sebagai paragraf biasa
-//                 return (
-//                   <p key={index} className="text-gray-600 leading-relaxed text-justify text-sm">
-//                     {paragraph}
-//                   </p>
-//                 );
-//               }) : (
+//               {doc.summary ? (
+//                 <div 
+//                   className="text-gray-700 leading-relaxed text-justify prose prose-sm max-w-none prose-p:mb-3"
+//                   dangerouslySetInnerHTML={{ __html: doc.summary }} 
+//                 />
+//               ) : (
 //                 <p className="text-gray-500 italic text-sm">Ringkasan belum tersedia.</p>
 //               )}
 //             </div>
@@ -849,3 +833,4 @@ export default function DocumentDetailPage() {
 //     </div>
 //   );
 // }
+
